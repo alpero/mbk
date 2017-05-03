@@ -1,0 +1,122 @@
+<html>
+<head>
+    <link rel="stylesheet" href="leaflet.css" />
+    <script src="leaflet.js"></script>
+</head>
+<body>
+    <div id="mapdiv" style="width:100%; height:100%;"></div>  
+<script>
+    var map = L.map('mapdiv').setView([43.435772, -83.952934], 13);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox.streets'
+    }).addTo(map);
+
+    function addMarker(lon, lat, popup) {
+        marker = L.marker([lat, lon]).addTo(map).bindPopup(popup, { maxWidth: "auto" });
+        marker.on('mouseover', function (e) { this.openPopup();  });
+        marker.on('mouseout',  function (e) { this.closePopup(); });
+    }
+    
+    function descBuilder(address, city, state, zipcode, name, contact, phone, url, ages, sex, faithBased, milestone) {
+        var desc  = "<span style='font-size:1.25em'>";
+            desc += "<b>" + name + "</b><br>";
+            desc += address + "<br>";
+            desc += city + ", " + state + ", " + zipcode + "</span><br><br>";
+            desc += "<table style='width:100%; font-size:1em; white-space:nowrap;'>";
+            desc += "<tr><td class='block'><b>Contact:</b></td><td>"             + contact    + "</td></tr>";
+            desc += "<tr><td class='block'><b>Phone Number:</b></td><td>"        + phone      + "</td></tr>";
+            desc += "<tr><td class='block'><b>URL:</b></td><td>"                 + url        + "</td></tr>";
+            desc += "<tr><td class='block'><b>Ages:</b></td><td>"                + ages       + "</td></tr>";
+            desc += "<tr><td class='block'><b>Sex:</b></td><td>"                 + sex        + "</td></tr>";
+            desc += "<tr><td class='block'><b>Faith Based:</b></td><td>"         + faithBased + "</td></tr>";
+            desc += "<tr><td class='block'><b>Milestone Addressed:</b></td><td>" + milestone  + "</td></tr>";
+            desc += "</table>";
+        return desc;
+    }
+    
+    addMarker(-83.952934,43.435772,descBuilder("801 State St","Saginaw","MI","48602","Ames United Methodist Church","Rev. Mark Karls","(989) 754-6373","http://www.ameschurch.org/","All","All","Yes","All"));
+	addMarker(-83.906305,43.373468,descBuilder("3399 Williamson Road","Bridgeport","MI","48722","Bridgeport Public Library","Rose Rice-Gutierrez","(989) 777-6030","www.bridgeportlibrary.org/","All","All","","All"));
+	addMarker(-83.897667,43.338170,descBuilder("2895 East Moore Road","Saginaw","MI","48601","CALVARY COMMUNITY CHURCH","Tedd Doolitte","(989) 777-4190","http://calvarycommunity.webs.com/","All","All","Yes","All"));
+	addMarker(-84.030748,43.445006,descBuilder("5800 Weiss Street","Saginaw","MI","48603","CATHOLIC DIOCESE OF SAGINAW - HISPANIC MINISTRIES DEPARTMENT","Veronica Strudgeon","(989) 799-7910","http://www.saginaw.org/","All","All","Yes","All"));
+	addMarker(-83.881837,43.589402,descBuilder("915 Columbus Avenue","Bay City","MI","48708","CATHOLIC FAMILY SERVICES OF THE DIOCESE OF SAGINAW","Thomas Conklin","(989) 892-2504","http://www.saginaw.org/chancery/diocesen-directory.html","All","All","Yes","All"));
+	addMarker(-83.939557,43.430393,descBuilder("320 S. Washington Avenue 2nd Floor","Saginaw","MI","48638","Center for Civil Justice","Edward J Hoort","(800) 724-7441","http://www.ccj-mi.org/","All","All","","6"));
+	addMarker(-84.015390,43.427015,descBuilder("1325 North Center Road","Saginaw","MI","48638","CENTER ROAD CHURCH OF CHRIST","Rick Resio","(989) 790-2707","http://centerroadchurchofchrist.org/","All","All","Yes","All"));
+	addMarker(-84.118126,43.182662,descBuilder("218 South Church Street","Chesaning","MI","48616","CHESANING AREA EMERGENCY RELIEF","Ken Bueche","(989) 845-6212","https://www.volunteermatch.org/search/org215962.jsp","All","All","","All"));
+	addMarker(-83.953010,43.426515,descBuilder("1311 N Michigan Ave","Saginaw","MI","48602","Child Abuse and Neglect of Saginaw Co.","Catherine Martinez, Suzanne Greenberg","(989) 752-7226","http://cancouncil.org/","Birth-20","All","","All"));
+	addMarker(-83.977548,43.438144,descBuilder("2806 Davenport Ave","Saginaw","MI","48607","Child and Family Services","Margaret Bach","(989) 790-7500","http://www.childandfamilysaginaw.org/","All","All","","All"));
+	addMarker(-83.928853,43.424831,descBuilder("1021 Burt St","Saginaw","MI","48601","City Rescue Mission","Dan Streeter","(989) 752-6051, ext. 214","http://rescuesaginaw.org/","All","All","","All"));
+	addMarker(-83.907223,43.421440,descBuilder("2824 Perkins St","Saginaw","MI","48602","Community Action Committee","Lilly Williams","(989) 753-7741","http://www.saginawcac.org/","All","All","","All"));
+	addMarker(-83.986004,43.557952,descBuilder("1961 Delta Rd","University Center","MI","48710","Men of Delta","John Neal","(989) 686-9117","delta.edu","15+","All","","2 3 4 5"));
+	addMarker(-83.935967,43.433211,descBuilder("411 E Genesee Ave","Saginaw","MI","48601","DHHS","Shelly Marner, Rick Latinen","(989) 758-1100","http://www.michigan.gov/mdhhs/0,5885,7-339-73970_5461_66820-288010--,00.html","All","All","","All"));
+	addMarker(-83.983343,43.452652,descBuilder("3190 Hallmark Court #1","Saginaw","MI","48603","DOT CARING CENTERS","Tracy L. Eagle","(989) 790-3366","www.dotcaringcentersinc.com/","13+","All","","5 6"));
+	addMarker(-83.945748,43.397414,descBuilder("3917 Jefferson Ave","Saginaw","MI","48638","Early On","Brad Gomoluch","(989) 249-8710","https://www.1800earlyon.org/","0-5","All","","1 2"));
+	addMarker(-83.929992,43.428319,descBuilder("940 E Genesee Ave","Saginaw","MI","48602","East Side Soup Kitchen","Pamela M Cole, Dan Goodrow","(989) 755-3663","http://www.eastsidesoupkitchen.org/","All","All","","All"));
+	addMarker(-83.918766,43.420961,descBuilder("733 S 14th St","Saginaw","MI","48601","Emmaus House","Annette Ripper","(989) 755-7538","http://www.emmaushouse-saginaw.com/","All","All","Yes","3 4 5 6"));
+	addMarker(-83.939557,43.430393,descBuilder("320 S Washington Ave","Saginaw","MI","48607","Ezekiel Project","Jamie Forbes","(989) 755-1620","https://ezekielprojectsaginaw.wordpress.com/","All","All","","3 4 5"));
+	addMarker(-83.937402,43.428869,descBuilder("403 S Jefferson Ave","Saginaw","MI","48607","First Congressional Church","Rev. Todd Stephaen Farley","(989) 754-6565","http://www.fccsaginaw.org/","All","All","Yes","All"));
+	addMarker(-83.919679,43.446767,descBuilder("1410 N 12th St","Saginaw","MI","48601","First Ward","Michelle McGregor","(989) 753-0411","http://www.firstward.us/","All","All","","All"));
+	addMarker(-83.940026,43.434646,descBuilder("1 Tuscola Suite 100B","Saginaw","MI","48601","FORCE Youth Advisory Committee","Kendra Kempf ","(989) 755-0545","http://www.saginawfoundation.org/site/initiatives/force/","14-21","All","","3"));
+	addMarker(-83.739665,43.331523,descBuilder("359 South Franklin Street","Frankenmuth","MI","48734","FRANKENMUTH JAMES E WICKSON DISTRICT LIBRARY","Mary Chasseur","(989) 652-8323","http://www.wicksonlibrary.org/","All","All","","All"));
+	addMarker(-83.954579,43.422381,descBuilder("315 W Holland St","Saginaw","MI","48607","Habitat for Humanity","Cameron Brady","(989) 753-5299, ext. 207","saginawrestore.com","All","All","","5 6"));
+	addMarker(-83.935191,43.432905,descBuilder("501 Lapeer Avenue","Saginaw","MI","48601","HDI","Tarshia Gilbert","(989) 755-0316","http://www.healthdelivery.org/locations/janes/","All","All","","All"));
+	addMarker(-84.234008,43.414405,descBuilder("406 West Saginaw","Hemlock","MI","48626","HEMLOCK UNITED METHODIST","Sarah Vollmer","(989) 642-5932","http://hemlockumc.org/","All","All","","All"));
+	addMarker(-83.929992,43.428319,descBuilder("940 E Genesee Ave # 2","Saginaw","MI","48602","Hidden Harvest","Linda P McGee, Samantha McKenzie","(989) 753-4749","http://www.hiddenharvestshares.org/","All","All","","All"));
+	addMarker(-83.861121,43.428876,descBuilder("Harry Browne Airport 4821 Janes Rd","Sagianw","MI","48601","I SUPPORT THE 1%","","(989) 341-5080","supportthe1percent.com/","18+","All","","5"));
+	addMarker(-83.937591,43.420084,descBuilder("1110 Howard St","Saginaw","MI","48601","Innerlink","Bridie Johnson","(989) 753-3431","http://www.innerlinkservices.com/","13-20","All","","3 4 5 6"));
+	addMarker(-83.935553,43.431533,descBuilder("100 S. Jefferson Avenue 3rd Floor","Saginaw","MI","48607","Lexia Literacy Program","Kayla Petz","(989) 776-0545","http://www.unitedwaysaginaw.org/lexia-literacy-program","5","All","","2"));
+	addMarker(-84.014426,43.481009,descBuilder("5024 North Center Rd","Saginaw","MI","48601","LIST Psychological Services","Michelle Trudell","(989) 790-3130","https://www.listpsych.com/","All","All","","All"));
+	addMarker(-84.333157,43.409582,descBuilder("321 West Saginaw Street","Merrill","MI","48637","MERRILL DISTRICT LIBRARY","Rochelle Siler","(989) 643-7300","http://www.merrilllibrary.org/","All","All","","All"));
+	addMarker(-83.951335,43.414546,descBuilder("15387 S. Washington Ave.","Saginaw","MI","48602","Mexican American Council of Saginaw ","Ramon Deleon","(989) 753-0500","https://www.facebook.com/Mexican-American-Council-MAC-1595046544114649/","12-20","All","","All"));
+	addMarker(-83.937162,43.432922,descBuilder("312 E Genesee Ave","Saginaw","MI","48607","MI Works","Eric Schantz","(989) 752-3145","http://www.michiganworks.com/","18+","All","","5 6"));
+	addMarker(-85.291311,42.343445,descBuilder("5500 Armstrong Rd","Battle Creek","MI","49037","Michigan Youth ChalleNGe Academy","MSGT. Drake","(800) 372-0523","miycp.org","16-18","All","","3 5 6"));
+	addMarker(-83.935228,43.400088,descBuilder("2306 Hess Ave","Saginaw","MI","48602","Millenium Economic Development Group ","Phillip List, John Dunn","(989) 755-3857","http://www.saginaw-mi.com/departments/communityandeconomicdevelopment/sedc/","18+","All","","4 5"));
+	addMarker(-83.962068,43.445281,descBuilder("1500 Weiss Street","Saginaw","MI","48602","Minority Veteran Program ","Minnie Beulah","(989) 497-2500, ext. 13011","http://www.va.gov/centerforminorityveterans/","18+","All","","4 5"));
+	addMarker(-83.963238,43.418931,descBuilder("500 Hancock St","Saginaw","MI","48601","Mission in the City","Yvette Haynes","(989) 771-3630 or (989) 753-1151","http://www.missioninthecity.org/","All","All","","All"));
+	addMarker(-83.925992,43.427641,descBuilder("1325 Cherry St","Saginaw","MI","48601","Mustard Seed Shelter","Amy Bartesl-Roe","(989) 755-4741","http://themustardseedshelter.org/","All","All","Yes","3 4 5 6"));
+	addMarker(-83.969348,43.415276,descBuilder("600 Gratiot Ave","Saginaw","MI","48601","Old Town Christian Outreach Center","Pastor Jim Doran","(989) 249-8696","http://www.oldtowncoc.com/","All","All","Yes","All"));
+	addMarker(-83.939337,43.430296,descBuilder("310 S Washington Ave","Saginaw","MI","48607","POP","Pastor Camel","(989) 401-6213","","All","All","","6"));
+	addMarker(-83.935553,43.431533,descBuilder("100 S Jefferson Ave # 3","Saginaw","MI","48607","Project Home","Lorisa Bellinger","(989) 755-0505, ext. 210","http://www.unitedwaysaginaw.org/project-home","16+","All","","3 4 5 6"));
+	addMarker(-83.935685,43.430442,descBuilder("505 Janes Avenue","Saginaw","MI","48607","PUBLIC LIBRARIES OF SAGINAW","Maria McCarville","(989) 744-9829","http://www.saginawlibrary.org/","All","All","","All"));
+	addMarker(-84.229840,43.423842,descBuilder("1140 North Hemlock Road","Hemlock","MI","48626","RAUCHHOLZ MEMORIAL LIBRARY","BillieJo Bluemer","(989) 642-8621","http://www.rauchholzlibrary.org/","All","All","","All"));
+	addMarker(-83.935553,43.431533,descBuilder("100 South Jefferson #401","Saginaw","MI","48607","READ ASSOCIATION OF SAGINAW COUNTY","Demond Tibbs","(989) 755-8402","http://www.readinsaginaw.org/","All","All","","All"));
+	addMarker(-83.927125,43.443925,descBuilder("1205 Norman St","Saginaw","MI","48601","Restoration Community Outreach","Trina Ushak, Torrie Lee","(989) 753-1886","http://www.rcoshelter.org/","All","All","","3 4 5 6"));
+	addMarker(-84.113828,43.183928,descBuilder("227 East Broad Street","Chesaning","MI","48616","RIVER RAPIDS DISTRICT LIBRARY","Erin Schmandt","(989) 845-3211","http://www.riverrapidslibrary.org/","All","All","","All"));
+	addMarker(-83.927125,43.443925,descBuilder("1205 Norman St.","Saginaw","MI","48607","Safe Haven","Mestisha Castleberry","(989) 921-7233","http://www.rcoshelter.org/safe-haven","All","All","","3 4 5 6"));
+	addMarker(-83.950228,43.430337,descBuilder("1600 North Michigan Avenue","Saginaw","MI","48602","SAGINAW  HEALTH PLAN","Llinda Hamacher","(989) 341-3900","http://www.saginawhealthplan.org/","All","All","","All"));
+	addMarker(-84.00024,43.4819460,descBuilder("5161 Cardinal Park Drive","Saginaw","MI","48602","SAGINAW AREA FOUNDATION FOR EYE CARE (SAFE)","Trish Arner","(989) 249-1019","http://web.saginawchamber.org/NonProfit/Saginaw-Area-Foundation-for-Eye-Care-6024","All","All","","1"));
+	addMarker(-83.937739,43.438206,descBuilder("515 N Washington Ave 3rd Floor","Saginaw","MI","48607","Saginaw Co. Business &Education Partnership","Kathy Conklin","(989) 399-0016","http://web.saginawchamber.org/Educational-Institutions/Saginaw-County-Business-Education-Partnership-2611","K-12","All","","All"));
+	addMarker(-83.965914,43.418017,descBuilder("111 South Michigan Avenue","Saginaw","MI","48602","Saginaw Co. Commisioner","Carl E. Ruth","(989) 790-5267","http://www.saginawcounty.com/commissioners/","All","All","","All"));
+	addMarker(-83.952793,43.425470,descBuilder("1226 North Michigan Ave","Saginaw","MI","48607","Saginaw Co. Youth Protection Council","Bridie Johnson","(989) 753-3431","http://web.saginawchamber.org/Youth-Services/Saginaw-County-Youth-Protection-Council-480","13-20","All","","3 4 5"));
+	addMarker(-83.967585,43.459748,descBuilder("3600 Fashion Square Blvd","Saginaw","MI","48603","Saginaw Great Start Collaborative","Julie Kozan","(989) 399-7452","http://greatstartsaginaw.org/","0-5","All","","1"));
+	addMarker(-83.919251,43.443586,descBuilder("1803 Norman St","Saginaw","MI","48602","Saginaw Housing Commission","Leslie Foxx Sims","(989) 755-8183","http://www.saginawhousing.org/","18+","All","","All"));
+	addMarker(-84.039205,43.414955,descBuilder("6235 Gratiot Rd.","Saginaw","MI","48601","Saginaw ISD Superintendant","Kathy Stewart","(989) 249-8701","http://www.sisd.cc/staff-directory/","Birth-20","All","","1 2 3 5 6"));
+	addMarker(-83.950228,43.430337,descBuilder("1600 N. Michigan Ave","Saginaw","MI","48602","SAGINAW PATHWAYS TO BETTER HEALTH","Tawyna  Simon","(989) 758-3850","http://www.saginawpublichealth.org/page.asp?ID=449&PID=198","All","All","","All"));
+	addMarker(-84.143383,43.299432,descBuilder("104 West Spruce Street","St. Charles","MI","48655","SAINT CHARLES DISTRICT LIBRARY","Nannette Pretzer","(989) 865-9451","http://www.stcharlesdistrictlibrary.org/","All","All","","All"));
+	addMarker(-83.970045,43.436109,descBuilder("2030 N Carolina St","Saginaw","MI","48601","Salvation Army","Captains Cassandra and Thom Moffitt","(989) 401-7881","http://saginawsalvationarmy.org/","15+","All","","3 4 5"));
+	addMarker(-83.935553,43.431533,descBuilder("100 South Jefferson Ave 3rd Floor","Saginaw","MI","48604","SC-CHAP","Dawn Hessel","(989) 776-0570","http://scchap.org/","All","All","","All"));
+	addMarker(-83.963238,43.418931,descBuilder("500 Hancock St","Saginaw","MI","48602","SCCMHA","Sandra M. Lindsey","(989) 797-3400","https://www.sccmha.org/","All","All","","All"));
+	addMarker(-83.950228,43.430337,descBuilder("1600 N Michigan Ave","Saginaw","MI","48602","SCDPH","John McKellar, Tammy Thiesen, Pat Ritter, Pam Smith","(989) 758-3800","http://www.saginawpublichealth.org/","All","All","","All"));
+	addMarker(-83.936493,43.425832,descBuilder("615 Hoyt Ave","Saginaw","MI","48607","St. Mary's Cathedral","Joseph Cistone","(989) 752-8119","http://cathedral.cscluster.com/","All","All","Yes","All"));
+    addMarker(-83.932207,43.433023,descBuilder("720 Tuscola St","Saginaw","MI","48602","St. Paul's Episcopal Church","Rev. Judi Boli","(989) 755-3449","http://www.episcopalchurch.org/parish/st-pauls-episcopal-church-saginaw-mi","All","All","Yes","All"));
+	addMarker(-83.930785,43.430985,descBuilder("915 Federal Ave","Saginaw","MI","48607","St.John Lutheran","Pastro Connie Sassanella","(989) 754-0489","http://stjohnlutheranelcasaginaw.weebly.com/","All","All","Yes","All"));
+	addMarker(-84.009378,43.399888,descBuilder("4735 W Michigan Ave","Saginaw","MI","48607","Sts. Peter and Paul","Mary Vogelpohl, Janet Passariello","(989) 799-5448","http://www.saginaw.org/catholic-schools/*saginaw/ss.-peter-paul-church-st.-dominic-parish/view-details.html","All","All","Yes","All"));
+	addMarker(-83.962068,43.445281,descBuilder("1500 Weiss Street","Saginaw","MI","48602","Supportive Services for Veterans/Families","Travis Vanderlist","(989) 799-6542","http://www.va.gov/homeless/ssvf/index.asp","18+","All","","4 5"));
+	addMarker(-83.990919,43.436394,descBuilder("3521 State Street","Saginaw","MI","48603","SVAALTI","Kevin Gregory, W. Charles Martin","","http://svaalti.yolasite.com/","All","All","","All"));
+	addMarker(-83.915569,43.442025,descBuilder("919 Veterans Memorial Pkwy","Saginaw","MI","48601","SVRC Industries","Pam Johnson","(989) 752-6176","http://svrcindustries.com/","16+","All","","3 4 5"));
+	addMarker(-83.973463,43.518250,descBuilder("7400 Bay Rd","University Center","MI","48640","SVSU Office of Multicultural Services","Shawn Wilson","(989) 964-4296","svsu.edu","15+","All","","3 4 5"));
+	addMarker(-83.786862,43.250770,descBuilder("11935 Silver Creek Drive","Birch Run","MI","48415","THOMAS E FLESCHNER MEMORIAL LIBRARY","Jeanette Morrish","(989) 624-5171","http://www.birchruntwp.com/township-facilities/fleschner-memorial-library","K-12","All","","All"));
+	addMarker(-84.073993,43.418314,descBuilder("8207 Shields Drive","Saginaw","MI","48609","THOMAS TOWNSHIP LIBRARY","Terri Dusek","(989) 781-3770","http://thomastownshiplibrary.org/","All","All","","All"));
+	addMarker(-83.945050,43.420277,descBuilder("1230 s. Washington Ave","Saginaw","MI","48602","Underground Railroad","Val Hoffman","(989) 755-0411","http://www.undergroundrailroadinc.org/","18+","F","","All"));
+	addMarker(-83.935553,43.431533,descBuilder("100 S Jefferson Ave # 3","Saginaw","MI","48602","United Way Saginaw Co.","Larry Sims","(989) 755-0505","unitedwaysaginaw.org","All","All","","All"));
+	addMarker(-83.988004,43.401023,descBuilder("1802 W Michigan Ave","Saginaw","MI","48607","West Michigan Methodist Church","Pastor Melene Wilsey","(989) 792-4689","http://michiganumc.org/","All","All","Yes","All"));
+	addMarker(-83.936538,43.438298,descBuilder("500 N Washington Ave","Saginaw","MI","48638","Word of Faith Ministries","Pastor Byron Hayes","(989) 752-1675","http://www.wofim.com/","All","All","Yes","All"));
+	addMarker(-83.962888,43.410899,descBuilder("1915 Fordney Street","Saginaw","MI","48601","YMCA OF SAGINAW","Brian Miller","(989) 753-7721","saginawymca.org/","All","All","","All"));
+	addMarker(-83.940026,43.434646,descBuilder("1 Tuscola Suite 100B","Saginaw","MI","48607","Youth 1st","Debra Shelton","(989) 755-0545","http://www.saginawfoundation.org/site/initiatives/youth-first/","10-16","All","","2"));
+	addMarker(-83.973463,43.518250,descBuilder("7400 Bay Rd","University Center","MI","48710","Great Lakes Bay Early College","Lucas Peless","(989) 964-2047","www.sisd.cc/glbec/staff-directory/","","","",""));
+	addMarker(-83.961511,43.410717,descBuilder("1910 Fordney St","Saginaw","MI","48601","Big Brothers Big Sisters of the Great Lakes Bay Region","Teri Hurst","(989) 755-6558","www.bbbsgreatlakesbay.org/contact","","","",""));
+	addMarker(-83.875957,43.422164,descBuilder("1040 North Towerline Rd","Saginaw","MI","48601","MAX System of Care Saginaw (Sag Co. Community Mental Health Authority)","Wardene Talley","(989) 797-3400","maxsaginawsc.org","","","",""));
+</script>
+</body>
+</html>
